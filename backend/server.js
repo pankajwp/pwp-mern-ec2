@@ -11,23 +11,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // DBConn();
 // app.use("/goal", require("./routes/goalRoutes"));
-app.get("/", (req, res) => {
-  res.status(200).send({"hello":"world"})
-})
+// app.get("/", (req, res) => {
+//   res.status(200).send({"hello":"world"})
+// })
 app.use("/user", require("./routes/userRoutes"));
 
 // Serve frontend
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname, "../frontend/build")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-//   app.get("*", (req, res) =>
-//     res.sendFile(
-//       path.resolve(__dirname, "../", "frontend", "build", "index.html")
-//     )
-//   );
-// } else {
-//   app.get("/", (req, res) => res.send("Please set to production"));
-// }
+  app.get("*", (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, "../", "frontend", "build", "index.html")
+    )
+  );
+} else {
+  app.get("/", (req, res) => res.send("Please set to production"));
+}
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
