@@ -1,6 +1,18 @@
 const bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 const User = require("./../modals/User");
+
+
+exports.apiTest = (req, res) => {
+  console.log("inside api test")
+  try{
+    res.status(200).json({ "hello":"World" });
+  }catch(err){
+    res.status(401).json({ message: "Unauthorized" });
+  }
+}
+
+
 exports.register = async (req, res) => {
   const { fullname, email, password, avatar } = req.body;
   if (!email && !password) {
