@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 // app.get("/", (req, res) => {
 //   res.status(200).send({"hello":"world"})
 // })
-app.use("/user", require("./routes/userRoutes"));
+app.use("/api/user", require("./routes/userRoutes"));
 
 // Serve frontend
 // if (process.env.NODE_ENV === "production") {
